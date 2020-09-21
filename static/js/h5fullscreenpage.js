@@ -368,8 +368,10 @@
                 var audio = document.getElementById('audio');
                 if (audio.paused) {
                     audio.play();
+                	$(this).addClass('play')
                 } else {
                     audio.pause();
+                	$(this).removeClass('play')
                 }
             });
             // 绑定事件
