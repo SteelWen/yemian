@@ -171,6 +171,10 @@
             percentage = (dragStart - event.clientY) / window.screen.height;//
              
             if (percentage > 0) {
+				setTimeout(function(){
+					audio.play()
+					// music.click()
+				},500)
                 // //向上拖动
                 var scale = 1 - 0.5*percentage;//缩放系数，可以微调
                 // var translateY = 1 - 0.4*percentage;//位置系数，可以微调
@@ -180,6 +184,10 @@
                  obj[opt.type].upDrag(percentage, item);
                  
             } else if (item.prev()) {
+				setTimeout(function(){
+					audio.play()
+					// music.click()
+				},500)
                 //向下拖动
                 // var scale = 0.8 - 0.2*percentage;
                 // var translateY = -(0.4*percentage);
@@ -287,6 +295,7 @@
                 var src = opt.useMusic.src;
                 // $('body').append('<span class="music play"><audio id="audio" src='+src+' '+autoplay+' '+loopPlay+'></audio></span>');
 				 $('body').append('<span class="music play"><audio id="audio" src='+src+' '+autoplay+' '+loopPlay+'></audio></span>');
+				 
             }
          }
          function orderPart(dom){
@@ -363,17 +372,28 @@
                         }, false);  
                     }
             }
-            $('.music').on('tap',function(){
-                $(this).toggleClass('play');
-                var audio = document.getElementById('audio');
-                if (audio.paused) {
-                    audio.play();
-                	$(this).addClass('play')
-                } else {
-                    audio.pause();
-                	$(this).removeClass('play')
-                }
-            });
+			 // $(document).ready(function (){
+				// var audio = document.getElementById('audio');
+				// var music = document.querySelector(".music")
+				// setTimeout(function(){
+				// 	// audio.play()
+				// 	music.click()
+				// },500)
+				
+			 // });
+			$('.music').on('click',function(){
+				$(this).toggleClass('play');
+				var audio = document.getElementById('audio');
+				console.dir(audio)
+				if (audio.paused) {
+					audio.play();
+					$(this).addClass('play')
+				} else {
+					audio.pause();
+					$(this).removeClass('play')
+				}
+			}); 
+			
             // 绑定事件
             $(document).on('touchmove', function(e){
                 e.preventDefault();
